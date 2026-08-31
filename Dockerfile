@@ -7,8 +7,7 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 COPY ABIZ-LOCKER-RELEASE-22.0.0/backend/launcher.war /usr/local/tomcat/webapps/ROOT.war
 
 RUN mkdir -p /opt/mdmesh/files /opt/mdmesh/plugins /usr/local/tomcat/conf/Catalina/localhost
-COPY mdmesh/install/log4j_template.xml /opt/mdmesh/log4j-mdmesh.xml
-COPY mdmesh/docker/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Expose default port
