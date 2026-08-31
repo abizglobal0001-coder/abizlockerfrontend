@@ -1,0 +1,83 @@
+﻿# ABIZ LOCKER — Root .gitignore
+
+# ============================
+# CRITICAL SECURITY
+# ============================
+# NEVER commit keystores or secrets
+keystores/
+*.jks
+*.keystore
+*.p12
+.env
+.env.local
+.env.production
+.env.*.local
+*.pem
+*.key
+
+# ============================
+# Java / Maven
+# ============================
+target/
+*.class
+*.war
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+.mvn/
+build.properties
+
+# ============================
+# Android / Gradle
+# ============================
+.gradle/
+local.properties
+mdmesh/agent-android/.gradle/
+mdmesh/agent-android/app/build/
+mdmesh/agent-android/*/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+mdmesh/agent-android/local.properties
+
+# ============================
+# React / Node
+# ============================
+node_modules/
+dist/
+build/
+.vite/
+web/node_modules/
+web/dist/
+web/.vite/
+*.tsbuildinfo
+
+# ============================
+# IDE / Editor
+# ============================
+.idea/
+*.iml
+.vscode/settings.json
+.vscode/launch.json
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================
+# Logs
+# ============================
+*.log
+logs/
+
+# ============================
+# Test outputs
+# ============================
+test-results/
+surefire-reports/
+
+# ============================
+# Docker volumes (local)
+# ============================
+pgdata/

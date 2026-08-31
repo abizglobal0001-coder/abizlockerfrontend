@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ABIZ LOCKER — Complete UI Portal & Mobile Lock Simulator</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); }
+    .phone-notch { width: 140px; height: 22px; background: #000; border-radius: 0 0 16px 16px; margin: 0 auto; }
+    .glow-red { box-shadow: 0 0 35px rgba(225, 29, 72, 0.5); }
+    .glow-green { box-shadow: 0 0 35px rgba(16, 185, 129, 0.5); }
+    .glow-blue { box-shadow: 0 0 35px rgba(59, 130, 246, 0.5); }
+    .glow-amber { box-shadow: 0 0 35px rgba(245, 158, 11, 0.5); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans p-3 md:p-6 min-h-screen">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="max-w-7xl mx-auto mb-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-black text-xl shadow-lg shadow-blue-500/30">
+        🛡️
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-xl font-extrabold tracking-tight text-white">ABIZ LOCKER</h1>
+          <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded">v22.0.0</span>
+        </div>
+        <p class="text-xs text-slate-400">Enterprise Device Financing & Hardware MDM Platform</p>
+      </div>
+    </div>
+
+    <!-- 3-Way Role Switcher -->
+    <div class="flex bg-slate-950 p-1.5 rounded-xl border border-slate-800 gap-1">
+      <button onclick="setPortal('superadmin')" id="tab-superadmin" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white transition-all shadow-md">
+        👑 Super Admin Console
+      </button>
+      <button onclick="setPortal('shopowner')" id="tab-shopowner" class="px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">
+        🏪 Shop Owner Portal
+      </button>
+      <button onclick="setPortal('mobile')" id="tab-mobile" class="px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">
+        📱 Client Phone Screen
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Multi-View Canvas -->
+  <main class="max-w-7xl mx-auto">
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 1: SUPER ADMIN PANEL -->
+    <!-- ========================================================================= -->
+    <section id="view-superadmin" class="space-y-6">
+      
+      <!-- Top Metrics -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+          <span class="text-xs text-slate-400 uppercase font-semibold">Total Retail Shops</span>
+          <p class="text-3xl font-extrabold text-white mt-1">48</p>
+          <span class="text-xs text-emerald-400 font-medium">↑ 4 new onboarded this month</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+          <span class="text-xs text-slate-400 uppercase font-semibold">Active Fleet Devices</span>
+          <p class="text-3xl font-extrabold text-indigo-400 mt-1">3,420</p>
+          <span class="text-xs text-slate-400">98.2% DO Active (v0.1.22)</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+          <span class="text-xs text-slate-400 uppercase font-semibold">Total Financing Volume</span>
+          <p class="text-3xl font-extrabold text-emerald-400 mt-1 font-mono">148.5M PKR</p>
+          <span class="text-xs text-emerald-400">94.1% Recovery Rate</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+          <span class="text-xs text-slate-400 uppercase font-semibold">System SLA / Health</span>
+          <p class="text-3xl font-extrabold text-emerald-400 mt-1">100%</p>
+          <span class="text-xs text-slate-400">PostgreSQL 18 HA / RTO ≤ 300s</span>
+        </div>
+      </div>
+
+      <!-- Super Admin Controls & Shop Directory -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white">🏢 Registered Retail Partners & Shop Hierarchy</h2>
+            <p class="text-xs text-slate-400">Manage multi-tenant isolation, credit allocation, and global device policies</p>
+          </div>
+          <button onclick="alert('Super Admin Action: New Retail Shop Onboarding Modal Opened')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center gap-2">
+            ➕ Onboard New Retail Shop
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px] font-bold">
+              <tr>
+                <th class="p-3">Shop Name & City</th>
+                <th class="p-3">Owner Contact</th>
+                <th class="p-3">Enrolled Devices</th>
+                <th class="p-3">Credit Balance</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Administrative Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-semibold text-white">
+                  Lahore Central Retail Mall (Shop #104)<br>
+                  <span class="text-[10px] text-slate-500 font-mono">UUID: 9f8a32d1-e87a-42cd-9430-ab01289cf001</span>
+                </td>
+                <td class="p-3 text-slate-300">Haji Usman (0300-1234567)</td>
+                <td class="p-3 font-mono">128 Phones</td>
+                <td class="p-3 font-mono text-emerald-400 font-bold">45,000 PKR</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ACTIVE</span></td>
+                <td class="p-3 text-right space-x-2">
+                  <button onclick="setPortal('shopowner')" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white text-[10px] rounded font-semibold">Login as Owner</button>
+                  <button class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] rounded font-semibold">Add Credit</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-semibold text-white">
+                  Karachi Saddar Mobile Plaza (Shop #208)<br>
+                  <span class="text-[10px] text-slate-500 font-mono">UUID: 3b1a82f4-712c-49aa-8521-fc9019283712</span>
+                </td>
+                <td class="p-3 text-slate-300">Tariq Mehmood (0321-7654321)</td>
+                <td class="p-3 font-mono">340 Phones</td>
+                <td class="p-3 font-mono text-emerald-400 font-bold">120,000 PKR</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ACTIVE</span></td>
+                <td class="p-3 text-right space-x-2">
+                  <button class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] rounded font-semibold">Login as Owner</button>
+                  <button class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] rounded font-semibold">Add Credit</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-semibold text-white">
+                  Rawalpindi Dubai Plaza (Shop #312)<br>
+                  <span class="text-[10px] text-slate-500 font-mono">UUID: 7a829104-bb21-4cf1-9012-ee9812736412</span>
+                </td>
+                <td class="p-3 text-slate-300">Bilal Qureshi (0333-9988776)</td>
+                <td class="p-3 font-mono">84 Phones</td>
+                <td class="p-3 font-mono text-rose-400 font-bold">0 PKR (Low)</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">SUSPENDED</span></td>
+                <td class="p-3 text-right space-x-2">
+                  <button class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] rounded font-semibold">Reactivate</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 2: SHOP OWNER PANEL -->
+    <!-- ========================================================================= -->
+    <section id="view-shopowner" class="hidden space-y-6">
+      
+      <!-- Shop Header Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-blue-900/50 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] bg-blue-600 text-white font-bold px-2 py-0.5 rounded uppercase tracking-wider">Tenant Console</span>
+          <h2 class="text-2xl font-black text-white mt-1">🏪 Lahore Central Retail Mall (Shop #104)</h2>
+          <p class="text-xs text-slate-300 mt-1">Owner: <strong>Haji Usman</strong> | Phone: <strong>0300-1234567</strong> | Location: <strong>Shop #12, Hafeez Centre, Lahore</strong></p>
+        </div>
+        <div class="flex items-center gap-4 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase block font-semibold">Locker Activation Credits</span>
+            <span class="text-2xl font-black text-emerald-400 font-mono">45,000 PKR</span>
+          </div>
+          <button class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all">
+            Top Up
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Action Operations -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Action 1: Onboard Customer -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-3">
+              📝
+            </div>
+            <h3 class="font-bold text-white text-sm">New Installment Contract</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Enroll customer CNIC, select phone IMEI, set down payment & monthly installment terms.</p>
+          </div>
+          <button onclick="alert('Action: Create New Installment Agreement form opened')" class="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow transition-all">
+            + Create Financing Agreement
+          </button>
+        </div>
+
+        <!-- Action 2: Quick Lock / Unlock Test -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center text-xl mb-3">
+              🔒
+            </div>
+            <h3 class="font-bold text-white text-sm">Live Mobile Controller</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Simulate sending immediate LOCK or UNLOCK payload to customer's connected phone.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-4">
+            <button onclick="triggerRemoteCommand('LOCK')" class="py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all">
+              🔒 Lock Phone
+            </button>
+            <button onclick="triggerRemoteCommand('UNLOCK')" class="py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all">
+              🔓 Unlock Phone
+            </button>
+          </div>
+        </div>
+
+        <!-- Action 3: In-Person Cash Payment -->
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl hover:border-blue-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl mb-3">
+              💵
+            </div>
+            <h3 class="font-bold text-white text-sm">Record Installment Payment</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Receive cash from customer at shop counter and auto-generate official PDF receipt.</p>
+          </div>
+          <button onclick="triggerRemoteCommand('UNLOCK'); alert('Payment of 5,000 PKR recorded successfully! Unlock command dispatched.')" class="mt-4 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow transition-all">
+            Receive Cash & Auto-Unlock
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Shop Devices Table -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <h3 class="font-bold text-white text-base flex items-center justify-between">
+          <span>📱 Enrolled Financed Phones (Shop #104)</span>
+          <span class="text-xs text-slate-400 font-normal">Showing 3 active contracts</span>
+        </h3>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px] font-bold">
+              <tr>
+                <th class="p-3">Customer Name</th>
+                <th class="p-3">Phone Model & IMEI</th>
+                <th class="p-3">Monthly Due</th>
+                <th class="p-3">Due Status</th>
+                <th class="p-3">Device State</th>
+                <th class="p-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-semibold text-white">
+                  Muhammad Tariq<br>
+                  <span class="text-[10px] text-slate-500">CNIC: 35202-9182741-1</span>
+                </td>
+                <td class="p-3">
+                  <span class="font-bold text-white">Samsung Galaxy A15</span><br>
+                  <span class="font-mono text-slate-400 text-[10px]">IMEI: 861794058291048</span>
+                </td>
+                <td class="p-3 font-mono font-bold text-white">5,000 PKR</td>
+                <td class="p-3 text-rose-400 font-semibold" id="shop-due-status">3 Days Overdue</td>
+                <td class="p-3" id="shop-device-status">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">LOCKED</span>
+                </td>
+                <td class="p-3 text-right space-x-1.5">
+                  <button onclick="setPortal('mobile')" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] rounded font-semibold">View Mobile</button>
+                  <button onclick="triggerRemoteCommand('UNLOCK')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] rounded font-semibold">Receive Payment</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-semibold text-white">
+                  Ali Raza<br>
+                  <span class="text-[10px] text-slate-500">CNIC: 35201-1122334-3</span>
+                </td>
+                <td class="p-3">
+                  <span class="font-bold text-white">Redmi Note 13</span><br>
+                  <span class="font-mono text-slate-400 text-[10px]">IMEI: 864920481029482</span>
+                </td>
+                <td class="p-3 font-mono font-bold text-white">4,200 PKR</td>
+                <td class="p-3 text-emerald-400 font-semibold">Due in 14 Days</td>
+                <td class="p-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">UNLOCKED</span>
+                </td>
+                <td class="p-3 text-right">
+                  <span class="text-[11px] text-slate-500">Paid on time</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- VIEW 3: CLIENT ANDROID PHONE LOCK SCREEN -->
+    <!-- ========================================================================= -->
+    <section id="view-mobile" class="hidden flex flex-col items-center justify-center py-4">
+      
+      <!-- Interactive Helper Banner -->
+      <div class="mb-4 bg-slate-900 border border-slate-800 p-3 rounded-xl text-center max-w-md">
+        <p class="text-xs text-slate-300">
+          💡 <strong>Live Test:</strong> Click buttons below to simulate remote commands from the backend!
+        </p>
+        <div class="flex justify-center gap-2 mt-2">
+          <button onclick="triggerRemoteCommand('LOCK')" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-lg">Simulate OVERDUE LOCK</button>
+          <button onclick="triggerRemoteCommand('UNLOCK')" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg">Simulate PAID UNLOCK</button>
+          <button onclick="triggerRemoteCommand('WARNING')" class="px-3 py-1 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg">Simulate REMINDER</button>
+        </div>
+      </div>
+
+      <!-- Phone Frame Outer -->
+      <div class="w-[340px] h-[680px] bg-slate-900 border-[6px] border-slate-700 rounded-[44px] shadow-2xl p-3 relative flex flex-col justify-between overflow-hidden">
+        
+        <!-- Screen Canvas -->
+        <div id="phone-screen" class="w-full h-full bg-slate-950 rounded-[34px] overflow-hidden flex flex-col justify-between p-5 relative transition-all duration-500 border border-slate-800">
+          
+          <!-- Top Notch & Status Bar -->
+          <div>
+            <div class="phone-notch"></div>
+            <div class="flex justify-between items-center text-[10px] text-slate-400 mt-1 px-1 font-mono">
+              <span id="phone-clock">11:50 AM</span>
+              <div class="flex items-center gap-1.5">
+                <span>📶 4G</span>
+                <span class="text-blue-400 font-bold">🛡️ ABIZ DO</span>
+                <span>🔋 88%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Central Branding & Lock Card -->
+          <div class="my-auto text-center space-y-4">
+            
+            <!-- Dynamic Lock/Unlock Glowing Icon -->
+            <div id="m-icon-badge" class="w-20 h-20 mx-auto rounded-full bg-rose-600/20 border-2 border-rose-500 flex items-center justify-center glow-red transition-all duration-500">
+              <span id="m-icon" class="text-4xl">🔒</span>
+            </div>
+
+            <!-- Title & Status -->
+            <div>
+              <div class="inline-block bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5" id="m-badge-text">
+                ABIZ LOCKER SECURITY ACTIVE
+              </div>
+              <h2 id="m-title" class="text-2xl font-black text-rose-500 tracking-tight">DEVICE LOCKED</h2>
+              <p id="m-message" class="text-xs text-slate-300 mt-2 px-1 leading-relaxed">
+                Aapki monthly installment <strong>5,000 PKR</strong> overdue ho chuki hai. Mobile ka normal touch aur apps block kar diye gaye hain.
+              </p>
+            </div>
+
+            <!-- Shop Info Card (Branded) -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-3.5 text-left text-xs space-y-1.5 shadow-lg">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] text-blue-400 uppercase font-bold tracking-wider">Authorized Retail Shop</span>
+                <span class="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-mono">Shop #104</span>
+              </div>
+              <p class="font-extrabold text-white text-sm">Lahore Central Retail Mall</p>
+              <p class="text-slate-300 text-[11px]">Helpline: <strong class="text-emerald-400 font-mono">0300-1234567</strong></p>
+              <p class="text-slate-400 text-[10px]">Address: Shop #12, Hafeez Centre, Main Boulevard, Lahore</p>
+            </div>
+
+          </div>
+
+          <!-- Bottom Operational Action Buttons -->
+          <div class="space-y-2 pt-2">
+            <button onclick="alert('EasyPaisa / JazzCash Online Payment Gateway Opened for 5,000 PKR')" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+              💳 Pay Online (EasyPaisa / JazzCash)
+            </button>
+            
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="alert('Calling Shop Support: 0300-1234567')" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5">
+                📞 Call Shop
+              </button>
+              <button onclick="alert('Emergency Dialer Opened (1122 / 15 / 911)')" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5">
+                🚨 Emergency
+              </button>
+            </div>
+            
+            <p class="text-[8px] text-center text-slate-500 font-mono mt-1">Locked via ABIZ LOCKER Enterprise MDM (Android API 36 / DO Active)</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Interactive Logic Script -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('phone-clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function setPortal(portal) {
+      const vSuper = document.getElementById('view-superadmin');
+      const vShop = document.getElementById('view-shopowner');
+      const vMobile = document.getElementById('view-mobile');
+
+      const tSuper = document.getElementById('tab-superadmin');
+      const tShop = document.getElementById('tab-shopowner');
+      const tMobile = document.getElementById('tab-mobile');
+
+      // Hide all
+      vSuper.classList.add('hidden');
+      vShop.classList.add('hidden');
+      vMobile.classList.add('hidden');
+
+      [tSuper, tShop, tMobile].forEach(t => {
+        t.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all";
+      });
+
+      if (portal === 'superadmin') {
+        vSuper.classList.remove('hidden');
+        tSuper.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white transition-all shadow-md";
+      } else if (portal === 'shopowner') {
+        vShop.classList.remove('hidden');
+        tShop.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white transition-all shadow-md";
+      } else if (portal === 'mobile') {
+        vMobile.classList.remove('hidden');
+        tMobile.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white transition-all shadow-md";
+      }
+    }
+
+    function triggerRemoteCommand(action) {
+      const badge = document.getElementById('m-icon-badge');
+      const icon = document.getElementById('m-icon');
+      const title = document.getElementById('m-title');
+      const msg = document.getElementById('m-message');
+      const shopDue = document.getElementById('shop-due-status');
+      const shopDev = document.getElementById('shop-device-status');
+
+      if (action === 'LOCK') {
+        badge.className = "w-20 h-20 mx-auto rounded-full bg-rose-600/20 border-2 border-rose-500 flex items-center justify-center glow-red transition-all duration-500";
+        icon.innerText = "🔒";
+        title.innerText = "DEVICE LOCKED";
+        title.className = "text-2xl font-black text-rose-500 tracking-tight";
+        msg.innerHTML = "Aapki monthly installment <strong>5,000 PKR</strong> overdue ho chuki hai. Mobile ka normal touch aur apps block kar diye gaye hain.";
+        if (shopDue) shopDue.innerText = "3 Days Overdue";
+        if (shopDev) shopDev.innerHTML = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">LOCKED</span>';
+      } else if (action === 'UNLOCK') {
+        badge.className = "w-20 h-20 mx-auto rounded-full bg-emerald-600/20 border-2 border-emerald-500 flex items-center justify-center glow-green transition-all duration-500";
+        icon.innerText = "🔓";
+        title.innerText = "DEVICE UNLOCKED";
+        title.className = "text-2xl font-black text-emerald-400 tracking-tight";
+        msg.innerHTML = "Payment of <strong>5,000 PKR</strong> successfully received! Device access is active. Next payment due: <strong class='text-emerald-300'>30 Sept 2026</strong>.";
+        if (shopDue) shopDue.innerText = "Paid (Due in 30 Days)";
+        if (shopDev) shopDev.innerHTML = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">UNLOCKED</span>';
+      } else if (action === 'WARNING') {
+        badge.className = "w-20 h-20 mx-auto rounded-full bg-amber-600/20 border-2 border-amber-500 flex items-center justify-center glow-amber transition-all duration-500";
+        icon.innerText = "⚠️";
+        title.innerText = "DUE REMINDER";
+        title.className = "text-2xl font-black text-amber-400 tracking-tight";
+        msg.innerHTML = "Gentle Reminder: Installment of <strong>5,000 PKR</strong> is due in 2 days. Please pay to avoid automatic device locking.";
+      }
+    }
+  </script>
+</body>
+</html>

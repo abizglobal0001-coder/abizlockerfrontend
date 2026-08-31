@@ -1,0 +1,26 @@
+﻿===============================================================================
+ABIZ LOCKER RELEASE 22.0.0 — OFFICIAL SHA-256 CHECKSUMS
+===============================================================================
+
+BACKEND WAR:
+File:   backend/launcher.war
+Size:   42709342 bytes
+SHA256: ADC5EE780CAB0D53C003D1606D2D18FA4A8FA286AA6CF08B18A3CB4EA8CB41EC
+
+ANDROID AGENT (UNSIGNED RELEASE):
+File:   android/app-release-unsigned.apk
+Size:   1391238 bytes
+SHA256: E69243527505AAA719966DD836A4A8188B14494D22D886A3C3217638525B66B6
+Version: 0.1.22 (versionCode: 22)
+
+ANDROID AGENT (PRODUCTION SIGNED RELEASE):
+File:   android/app-release-signed.apk
+Size:   1434149 bytes
+SHA256: 5F9488D8E24A916F200B2FDC51D8FC2BBE206B6E03F938EE5ADF002D142A31DC
+Version: 0.1.22 (versionCode: 22)
+Signing Certificate SHA-256:
+EF:FB:3C:95:80:C4:80:E7:40:A1:94:65:01:0A:7D:F2:86:7F:7B:46:FD:B9:5D:CE:74:F1:72:BE:7F:9A:0A:25
+
+Generated at: 2026-08-31T11:18:01+05:00
+Release Status: FROZEN / PRODUCTION SIGNED & VERIFIED
+===============================================================================
