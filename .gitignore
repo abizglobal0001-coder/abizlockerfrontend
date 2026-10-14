@@ -1,4 +1,4 @@
-﻿# ABIZ LOCKER — Root .gitignore
+# ABIZ LOCKER — Root .gitignore
 
 # ============================
 # CRITICAL SECURITY
@@ -14,6 +14,11 @@ keystores/
 .env.*.local
 *.pem
 *.key
+abiz_key*
+*.idsig
+*.exe
+tunnel_daemon*
+run_ssh_tunnel.ps1
 
 # ============================
 # Java / Maven

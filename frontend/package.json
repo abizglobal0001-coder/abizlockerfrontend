@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "framer-motion": "^13.1.1",
+    "localtunnel": "^2.0.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "recharts": "^3.10.1",
